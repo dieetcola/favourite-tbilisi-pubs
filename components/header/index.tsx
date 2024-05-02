@@ -1,7 +1,11 @@
+import AuthElement from 'components/header/auth-element';
+
 const Header = (): JSX.Element => {
   return (
     <header>
-      <div>111</div>
+      <div>
+        <AuthElement />
+      </div>
     </header>
   );
 };
