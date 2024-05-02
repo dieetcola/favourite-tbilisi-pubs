@@ -23,12 +23,14 @@ const Home: NextPage = (props: InferGetStaticPropsType<typeof getStaticProps>) =
 
 export const getStaticProps: GetStaticProps = async () => {
   let locations: LocationInterface[] | [];
+
   try {
     await dbConnect();
     locations = await findAllLocations();
   } catch (err: any) {
     return { notFound: true };
   }
+
   return {
     props: {
       data: { locations: JSON.stringify(locations) },
