@@ -1,5 +1,5 @@
-import { locationQueries } from '../graphql/locations/queris';
-import { locationMutations } from '../graphql/locations/mutations';
+import { locationQueries } from 'graphql/locations/queries';
+import { locationMutations } from 'graphql/locations/mutations';
 
 export const resolvers = {
   Query: {

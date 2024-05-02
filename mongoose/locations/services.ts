@@ -1,6 +1,7 @@
-import { FilterLocationType, FilterWishlistType } from './custom';
 import { LocationInterface } from './interface';
 import LocationModel from './model';
+
+import { FilterWishlistType, FilterLocationType } from 'mongoose/locations/custom';
 import { QueryOptions } from 'mongoose';
 
 export async function storeDocument(doc: LocationInterface): Promise<boolean> {

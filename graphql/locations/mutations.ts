@@ -1,4 +1,4 @@
-import { updateWishlist } from '../../mongoose/locations/services';
+import { updateWishlist } from 'mongoose/locations/services';
 
 interface UpdateWishlistInterface {
   user_id: string;

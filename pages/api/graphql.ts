@@ -1,8 +1,8 @@
 import { ApolloServer, BaseContext } from '@apollo/server';
 import { startServerAndCreateNextHandler } from '@as-integrations/next';
-import { resolvers } from '../../graphql/resolvers';
-import { typeDefs } from '../../graphql/schema';
-import dbConnect from '../../middleware/db-connect';
+import { resolvers } from 'graphql/resolvers';
+import { typeDefs } from 'graphql/schema';
+import dbConnect from 'middleware/db-connect';
 import { NextApiHandler, NextApiRequest, NextApiResponse } from 'next';
 
 const server = new ApolloServer<BaseContext>({
