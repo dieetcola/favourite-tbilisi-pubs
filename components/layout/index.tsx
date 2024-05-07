@@ -30,11 +30,11 @@ const surt = localFont({
 
 const Layout = (props: PropsInterface): JSX.Element => {
   return (
-    <div className={`${surt.variable} relative overflow-hidden font-sans`}>
+    <main className={`${surt.variable} relative overflow-hidden font-sans`}>
       <Header />
-      <main>{props.children}</main>
+      {props.children}
       <FuzzyOverlay />
-    </div>
+    </main>
   );
 };
 export default Layout;

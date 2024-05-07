@@ -115,14 +115,31 @@ const LocationDetail = (props: PropsInterface): JSX.Element => {
     //     </Button>
     //   )}
     // </>
+
     <div className='bg-neutral-950 min-h-screen  py-12 text-zinc-50'>
-      <div className='mx-auto grid grid-flow-row-dense md:grid-flow-col-dense   uppercase'>
-        <div className='mx-auto grid  '>
-          <h1 className='mb-12 text-[144px] font-medium  leading-tight'>{location.name}</h1>
+      <div className='mx-6 grid grid-flow-row-dense lg:grid-flow-col-dense gap-20   uppercase'>
+        <div className='grid  gap-6'>
+          <h1 className='mb-3 text-[104px] md:text-[144px] font-medium  leading-tight'>
+            {location.name}
+          </h1>
           <span className='text-zinc-400'>ADDRESS: {location.address}</span>
           <span className='text-zinc-400'>COMMENT: {location.comment}</span>
           <span className='text-zinc-400'>CUISINE: {location.cuisine}</span>
           <span className='text-zinc-400'>RATING: {location.rating}</span>
+          {session?.user.fdlst_private_userId && (
+            <Button
+              variant={!onWishlist ? 'outline' : 'blue'}
+              disabled={loading ? true : false}
+              clickHandler={() =>
+                wishlistAction({
+                  locationId: location.location_id,
+                  userId: session?.user.fdlst_private_userId,
+                })
+              }>
+              {onWishlist && <>Remove from your Wishlist</>}
+              {!onWishlist && <>Add to your Wishlist</>}
+            </Button>
+          )}
         </div>
         <Image
           alt='Mountains'
@@ -130,6 +147,7 @@ const LocationDetail = (props: PropsInterface): JSX.Element => {
           width={700}
           height={475}
           sizes='100vw'
+          className='rounded-md'
           style={{
             width: '100%',
             height: 'auto',
