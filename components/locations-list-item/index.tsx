@@ -14,7 +14,7 @@ const LocationsListItem = (props: PropsInterface): JSX.Element => {
   return (
     <>
       {location && (
-        <section className='bg-neutral-950 px-4 md:px-8'>
+        <section className='bg-neutral-950 px-4 md:px-8 '>
           <div className='mx-auto max-w-full'>
             <Link
               heading={location.name}

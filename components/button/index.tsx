@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { ButtonHTMLAttributes } from 'react';
 
-interface PropsInterface {
+interface PropsInterface extends ButtonHTMLAttributes<HTMLButtonElement> {
   disabled?: boolean;
   children?: React.ReactNode;
   variant?: 'blue' | 'outline';

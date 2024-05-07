@@ -50,8 +50,7 @@ const Header = (): JSX.Element => {
     //   </div>
     // </header>
 
-    <header
-      className={`${surt.variable} flex items-center justify-end  bg-neutral-950 text-white `}>
+    <header className='flex items-center justify-end font-medium  bg-neutral-950 text-white font-mono'>
       <AuthElement />
     </header>
   );

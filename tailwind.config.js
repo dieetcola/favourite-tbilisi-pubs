@@ -12,6 +12,7 @@ module.exports = {
     extend: {
       fontFamily: {
         sans: ['var(--font-surt-bold)'],
+        mono: ['var(--font-mono-light)'],
       },
       colors: {
         'regal-blue': '#FBFBFB',
