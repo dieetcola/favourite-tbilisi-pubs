@@ -51,6 +51,7 @@ export const getServerSideProps: GetServerSideProps = async (
     locations = await onUserWishlist(userId as string);
   } catch (err: any) {}
   return {
+    // the props will be received by the page component
     props: {
       data: { locations: JSON.stringify(locations), userId: userId },
     },

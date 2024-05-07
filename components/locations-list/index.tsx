@@ -6,10 +6,17 @@ interface PropsInterface {
 }
 
 const LocationsList = (props: PropsInterface): JSX.Element => {
+  // console.log(props.locations.length);
   return (
     <>
-      {props.locations.map((location) => {
-        return <LocationsListItem location={location} key={location.location_id} />;
+      {props.locations.map((location, i) => {
+        return (
+          <LocationsListItem
+            location={location}
+            isLast={i !== props.locations.length - 1}
+            key={location.location_id}
+          />
+        );
       })}
     </>
   );

@@ -3,11 +3,12 @@ import React from 'react';
 interface PropsInterface {
   disabled?: boolean;
   children?: React.ReactNode;
+  variant?: 'blue' | 'outline';
   clickHandler?: () => any;
 }
 
 const Button = (props: PropsInterface) => {
-  const { children, disabled, clickHandler } = props;
+  const { children, variant, disabled, clickHandler } = props;
 
   const renderContent = (children: React.ReactNode) => {
     if (disabled) {
@@ -16,6 +17,6 @@ const Button = (props: PropsInterface) => {
       return <span onClick={clickHandler}>{children}</span>;
     }
   };
-  return <div>{renderContent(children)}</div>;
+  return <div className='cursor-pointer'>{renderContent(children)}</div>;
 };
 export default Button;

@@ -15,6 +15,7 @@ import LocationDetail from 'components/locations-details';
 const Location: NextPage = (props: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   let location: LocationInterface = JSON.parse(props.data?.location);
   let title = `The Food Finder - Details for ${location?.name}`;
+  console.log(location);
   return (
     <>
       <Head>

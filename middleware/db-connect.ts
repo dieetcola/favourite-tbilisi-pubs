@@ -1,3 +1,4 @@
+// import { storeDocument } from '@/mongoose/weather/services';
 import mongoose from 'mongoose';
 import { storeDocument } from 'mongoose/locations/services';
 
@@ -7,9 +8,11 @@ if (!DATABASE_URL) {
   throw new Error('Please define the DATABASE_URL environment variable inside .env.local');
 }
 
+//@ts-ignore
 let cached = global.mongoose;
 
 if (!cached) {
+  //@ts-ignore
   cached = global.mongoose = { conn: null, promise: null };
 }
 
@@ -23,6 +26,7 @@ async function dbConnect() {
       bufferCommands: false,
     };
 
+    // @ts-ignore
     cached.promise = mongoose.connect(DATABASE_URL, opts).then((mongoose) => {
       return mongoose;
     });

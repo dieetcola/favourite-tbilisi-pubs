@@ -5,28 +5,32 @@ import Button from 'components/button';
 const AuthElement = (): JSX.Element => {
   const { data: session, status } = useSession();
   return (
-    <>
+    // <div className='mt-5 flex lg:ml-4 lg:mt-0'>
+    <div className='px-4 py-8  flex  uppercase text-[13px] md:text-[17px] font-thin  gap-4 lg:ml-4 lg:mt-10  md:px-8'>
       {status === 'authenticated' && (
-        <span>
-          Hi <b>{session?.user?.name}</b>
-        </span>
+        <span className='hidden sm:block'>Hi ({session?.user?.name})</span>
       )}
-      <nav>
+
+      <>
         {status === 'authenticated' && (
           <>
-            <Button>
-              <Link href={`/list/${session?.user.fdlst_private_userId}`}>Your wish list</Link>
+            <Button variant='outline'>
+              <Link href={`/list/${session?.user.fdlst_private_userId}`}>(Your wish list)</Link>
             </Button>
-            <Button clickHandler={() => signOut()}>Sign out</Button>
+            <Button variant='blue' clickHandler={() => signOut()}>
+              (Sign out)
+            </Button>
           </>
         )}
         {status == 'unauthenticated' && (
           <>
-            <Button clickHandler={() => signIn()}>Sign in</Button>
+            <Button variant='blue' clickHandler={() => signIn()}>
+              (Sign in)
+            </Button>
           </>
         )}
-      </nav>
-    </>
+      </>
+    </div>
   );
 };
 export default AuthElement;
