@@ -67,7 +67,7 @@ const Link = (props: LinkProps) => {
   const top = useTransform(mouseYSpring, [0.5, -0.5], ['40%', '60%']);
   const left = useTransform(mouseXSpring, [0.5, -0.5], ['60%', '70%']);
 
-  const handleMouseMove = (e) => {
+  const handleMouseMove = (e: React.MouseEvent<HTMLAnchorElement>) => {
     if (ref.current !== null) {
       const rect = ref.current?.getBoundingClientRect();
       const width = rect.width;
