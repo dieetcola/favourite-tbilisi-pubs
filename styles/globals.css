@@ -2,13 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
-/* @layer utilities {
+@layer base {
+  li {
+    @apply mb-4;
+  }
+}
+
+@layer utilities {
   .word-spacing {
-    word-spacing: -40px;
+    word-spacing: 140px;
     ;
   }
-} */
-
-.my-custom-style {
-  word-spacing: -40px;
 }
+
+/* .my-custom-style {
+  word-spacing: -10px;
+} */

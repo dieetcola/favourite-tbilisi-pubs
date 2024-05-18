@@ -1,20 +1,33 @@
-import { LocationInterface } from 'mongoose/locations/interface';
-import { useMotionValue, motion, useSpring, useTransform } from 'framer-motion';
 import React, { useRef } from 'react';
+import { useMotionValue, motion, useSpring, useTransform } from 'framer-motion';
 import { FiArrowRight } from 'react-icons/fi';
-// import { FiArrowRight } from 'react-icons/fi';
+
+import { LocationInterface } from 'mongoose/locations/interface';
 
 interface PropsInterface {
   location: LocationInterface;
-  isLast: boolean;
+  // isLast: boolean;
 }
+
+interface LinkPropsInterface {
+  heading: string;
+  subheading: string;
+  imgSrc: string;
+  href: string;
+  id: string;
+  cuisine: string;
+  // isLast: boolean;
+}
+
+type LinkProps = Record<string, string>;
 
 const LocationsListItem = (props: PropsInterface): JSX.Element => {
   const location = props.location;
+
   return (
     <>
       {location && (
-        <section className='bg-neutral-950 px-4 md:px-8 '>
+        <section className='bg-neutral-950  px-4 md:px-8 h-full'>
           <div className='mx-auto max-w-full'>
             <Link
               heading={location.name}
@@ -23,7 +36,7 @@ const LocationsListItem = (props: PropsInterface): JSX.Element => {
               href={`/location/${location.location_id}`}
               id={location.location_id}
               cuisine={location.cuisine}
-              isLast={props.isLast}
+              // isLast={props.isLast}
             />
           </div>
         </section>
@@ -34,9 +47,16 @@ const LocationsListItem = (props: PropsInterface): JSX.Element => {
 
 export default LocationsListItem;
 
-const Link = ({ heading, imgSrc, subheading, href, id, cuisine, isLast }) => {
-  console.log(isLast);
-  const ref = useRef(null);
+const Link = (props: LinkProps) => {
+  const {
+    heading,
+    imgSrc,
+    href,
+    id,
+    // isLast
+  } = props;
+
+  const ref = useRef<HTMLAnchorElement>(null);
 
   const x = useMotionValue(0);
   const y = useMotionValue(0);
@@ -48,19 +68,20 @@ const Link = ({ heading, imgSrc, subheading, href, id, cuisine, isLast }) => {
   const left = useTransform(mouseXSpring, [0.5, -0.5], ['60%', '70%']);
 
   const handleMouseMove = (e) => {
-    const rect = ref.current.getBoundingClientRect();
+    if (ref.current !== null) {
+      const rect = ref.current?.getBoundingClientRect();
+      const width = rect.width;
+      const height = rect.height;
 
-    const width = rect.width;
-    const height = rect.height;
+      const mouseX = e.clientX - rect.left;
+      const mouseY = e.clientY - rect.top;
 
-    const mouseX = e.clientX - rect.left;
-    const mouseY = e.clientY - rect.top;
+      const xPct = mouseX / width - 0.5;
+      const yPct = mouseY / height - 0.5;
 
-    const xPct = mouseX / width - 0.5;
-    const yPct = mouseY / height - 0.5;
-
-    x.set(xPct);
-    y.set(yPct);
+      x.set(xPct);
+      y.set(yPct);
+    }
   };
 
   return (
@@ -70,15 +91,8 @@ const Link = ({ heading, imgSrc, subheading, href, id, cuisine, isLast }) => {
       onMouseMove={handleMouseMove}
       initial='initial'
       whileHover='whileHover'
-      className={`group relative grid grid-cols-3 sm:grid-cols-3 gap-4 py-8 uppercase border-y-2  border-neutral-50  transition-colors duration-500 hover:border-neutral-50  md:py-8 ${
-        isLast ? 'border-y-2' : 'border-y-0'
-      } `}
-      // className=' group relative grid grid-cols-3 gap-4 uppercase border-y-2
-      //  border-neutral-50  transition-colors duration-500 hover:border-neutral-50  md:py-8'
-    >
-      <span
-        // className={`${isLast ? 'text-white' : 'text-red'} `}
-        className='hidden lg:block -tracking-2	 relative z-10  text-6xl  font-bold text-white transition-colors duration-500 group-hover:text-neutral-50 md:text-8xl'>
+      className={`group relative grid grid-cols-3   sm:grid-cols-3 gap-4 py-8 uppercase border-y-2  border-neutral-50  transition-colors duration-500 hover:border-neutral-50  md:py-8`}>
+      <span className='hidden lg:block -tracking-2	 relative z-10  text-6xl  font-bold text-white transition-colors duration-500 group-hover:text-neutral-50 md:text-8xl'>
         #00{id}
       </span>
       <span className='w-svw	relative z-10 -tracking-3  leading-[6rem] text-[73px]   font-bold text-white transition-colors duration-500 group-hover:text-neutral-50 md:text-8xl'>
