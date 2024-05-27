@@ -21,7 +21,7 @@ const List: NextPage = (props: InferGetServerSidePropsType<typeof getServerSideP
   let isCurrentUsers = userId && session?.user.fdlst_private_userId === userId;
 
   return (
-    <div className=''>
+    <>
       <Head>
         <title>{title}</title>
         content={`The Food Finder. A personal wish list.`}
@@ -34,7 +34,7 @@ const List: NextPage = (props: InferGetServerSidePropsType<typeof getServerSideP
         </>
       )}
       <LocationsList locations={locations} />
-    </div>
+    </>
   );
 };
 

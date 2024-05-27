@@ -9,9 +9,9 @@ const Home: NextPage = (props: InferGetStaticPropsType<typeof getStaticProps>) =
   const locations: LocationInterface[] = JSON.parse(props.data?.locations);
 
   return (
-    <div>
+    <>
       <LocationsList locations={locations} />
-    </div>
+    </>
   );
 };
 

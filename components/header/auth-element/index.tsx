@@ -29,7 +29,7 @@ const AuthElement = (): JSX.Element => {
   };
 
   return (
-    <div className='flex gap-4 uppercase text-[13px] md:text-[17px]  px-4 pb-16 pt-6  md:px-8 lg:pt-8 md:pb-24'>
+    <div className='flex gap-4 uppercase text-[13px] md:text-[17px] px-4 pb-16 pt-6 md:px-8 lg:pt-8 md:pb-24'>
       {renderContent()}
     </div>
   );

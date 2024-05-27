@@ -27,8 +27,8 @@ const LocationsListItem = (props: PropsInterface): JSX.Element => {
   return (
     <>
       {location && (
-        <section className='bg-neutral-950  px-4 md:px-8 h-full'>
-          <div className='mx-auto max-w-full'>
+        <section className='bg-neutral-950 px-4 md:px-8'>
+          <div className='max-w-full'>
             <Link
               heading={location.name}
               subheading='Learn what we do here'
@@ -91,11 +91,11 @@ const Link = (props: LinkProps) => {
       onMouseMove={handleMouseMove}
       initial='initial'
       whileHover='whileHover'
-      className={`group relative grid grid-cols-3   sm:grid-cols-3 gap-4 py-8 uppercase border-y-2  border-neutral-50  transition-colors duration-500 hover:border-neutral-50  md:py-8`}>
-      <span className='hidden lg:block -tracking-2	 relative z-10  text-6xl  font-bold text-white transition-colors duration-500 group-hover:text-neutral-50 md:text-8xl'>
+      className={`group relative py-28 grid grid-cols-3 sm:grid-cols-3 gap-4 uppercase border-y-2 border-neutral-50 transition-colors duration-500 hover:border-neutral-50 md:py-24`}>
+      <span className='hidden lg:block -tracking-2relative z-10 text-6xl font-bold text-white transition-colors duration-500 group-hover:text-neutral-50 md:text-8xl'>
         #00{id}
       </span>
-      <span className='w-svw	relative z-10 -tracking-3  leading-[6rem] text-[73px]   font-bold text-white transition-colors duration-500 group-hover:text-neutral-50 md:text-8xl'>
+      <span className='w-svw relative z-10 -tracking-3 leading-[6rem] text-[73px] font-bold text-white transition-colors duration-500 group-hover:text-neutral-50 md:text-8xl'>
         {heading}
       </span>
 
@@ -112,7 +112,7 @@ const Link = (props: LinkProps) => {
         }}
         transition={{ type: 'spring' }}
         src={imgSrc}
-        className='hidden lg:block absolute z-10  h-24 w-32 rounded-lg object-cover md:h-48 md:w-64 '
+        className='hidden lg:block absolute z-10 h-24 w-32 rounded-lg object-cover md:h-48 md:w-64'
         alt={`Image representing a link for ${heading}`}
       />
 
@@ -128,7 +128,7 @@ const Link = (props: LinkProps) => {
           },
         }}
         transition={{ type: 'spring' }}
-        className='hidden lg:block relative z-10  justify-self-end '>
+        className='hidden lg:block relative z-10 justify-self-end '>
         <FiArrowRight className='text-8xl text-neutral-50' />
       </motion.div>
     </motion.a>
