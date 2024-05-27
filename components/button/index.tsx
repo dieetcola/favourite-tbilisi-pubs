@@ -1,20 +1,11 @@
-import React, { ButtonHTMLAttributes } from 'react';
+import React, { ReactNode, ComponentProps } from 'react';
 
-interface PropsInterface extends ButtonHTMLAttributes<HTMLButtonElement> {
-  disabled?: boolean;
-  children?: React.ReactNode;
-  variant?: 'blue' | 'outline';
-  clickHandler?: () => any;
-}
-
-const Button = (props: PropsInterface) => {
-  const { children, variant, disabled, clickHandler } = props;
-
-  const renderContent = (children: React.ReactNode) => {
+const Button = ({ children, disabled, onClick }: ComponentProps<'button'>) => {
+  const renderContent = (children: ReactNode) => {
     if (disabled) {
       return <span>{children}</span>;
     } else {
-      return <span onClick={clickHandler}>{children}</span>;
+      return <span onClick={onClick}>{children}</span>;
     }
   };
   return <div className='cursor-pointer'>{renderContent(children)}</div>;

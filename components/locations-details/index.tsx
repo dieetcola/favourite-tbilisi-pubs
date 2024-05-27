@@ -99,9 +99,8 @@ const LocationDetail = (props: PropsInterface): JSX.Element => {
 
               {session?.user.fdlst_private_userId && (
                 <Button
-                  variant={!onWishlist ? 'outline' : 'blue'}
                   disabled={loading ? true : false}
-                  clickHandler={() =>
+                  onClick={() =>
                     wishlistAction({
                       locationId: location.location_id,
                       userId: session?.user.fdlst_private_userId,

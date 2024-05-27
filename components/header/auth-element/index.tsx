@@ -11,20 +11,14 @@ const AuthElement = (): JSX.Element => {
       return (
         <>
           <span className=''>Hi ({session?.user?.name})</span>
-          <Button variant='outline'>
+          <Button>
             <Link href={`/list/${session?.user.fdlst_private_userId}`}>(Your wish list)</Link>
           </Button>
-          <Button variant='blue' clickHandler={() => signOut()}>
-            (Sign out)
-          </Button>
+          <Button onClick={() => signOut()}>(Sign out)</Button>
         </>
       );
     } else {
-      return (
-        <Button variant='blue' clickHandler={() => signIn()}>
-          (Sign in)
-        </Button>
-      );
+      return <Button onClick={() => signIn()}>(Sign in)</Button>;
     }
   };
 
