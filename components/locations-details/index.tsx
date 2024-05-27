@@ -5,17 +5,8 @@ import Image from 'next/image';
 import Button from 'components/button';
 import { LocationInterface } from 'mongoose/locations/interface';
 
-interface PropsInterface {
-  location: LocationInterface;
-}
-
-interface WishlistInterface {
-  locationId: string;
-  userId: string;
-}
-
-const LocationDetail = (props: PropsInterface): JSX.Element => {
-  let location: LocationInterface = props.location;
+const LocationDetail = (props: { location: LocationInterface }): JSX.Element => {
+  let location = props.location;
   const { data: session } = useSession();
   const [onWishlist, setOnWishlist] = useState<Boolean>(false);
   const [loading, setLoading] = useState<Boolean>(false);
@@ -25,7 +16,7 @@ const LocationDetail = (props: PropsInterface): JSX.Element => {
     setOnWishlist(userId && location.on_wishlist.includes(userId) ? true : false);
   }, [session]);
 
-  const wishlistAction = (props: WishlistInterface) => {
+  const wishlistAction = (props: { locationId: string; userId: string }) => {
     const { locationId, userId } = props;
 
     if (loading) {

@@ -1,29 +1,12 @@
 import React, { useRef } from 'react';
 import { useMotionValue, motion, useSpring, useTransform } from 'framer-motion';
-import { FiArrowRight } from 'react-icons/fi';
 
 import { LocationInterface } from 'mongoose/locations/interface';
-
-interface PropsInterface {
-  location: LocationInterface;
-  // isLast: boolean;
-}
-
-interface LinkPropsInterface {
-  heading: string;
-  subheading: string;
-  imgSrc: string;
-  href: string;
-  id: string;
-  cuisine: string;
-  // isLast: boolean;
-}
+import { FiArrowRight } from 'react-icons/fi';
 
 type LinkProps = Record<string, string>;
 
-const LocationsListItem = (props: PropsInterface): JSX.Element => {
-  const location = props.location;
-
+const LocationsListItem = ({ location }: { location: LocationInterface }): JSX.Element => {
   return (
     <>
       {location && (
@@ -36,7 +19,6 @@ const LocationsListItem = (props: PropsInterface): JSX.Element => {
               href={`/location/${location.location_id}`}
               id={location.location_id}
               cuisine={location.cuisine}
-              // isLast={props.isLast}
             />
           </div>
         </section>
@@ -48,13 +30,7 @@ const LocationsListItem = (props: PropsInterface): JSX.Element => {
 export default LocationsListItem;
 
 const Link = (props: LinkProps) => {
-  const {
-    heading,
-    imgSrc,
-    href,
-    id,
-    // isLast
-  } = props;
+  const { heading, imgSrc, href, id } = props;
 
   const ref = useRef<HTMLAnchorElement>(null);
 
