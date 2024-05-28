@@ -1,8 +1,9 @@
-import Link from 'components/link';
 import React from 'react';
+import { Link } from 'components/link';
+
 import { LocationsListItemProps } from 'types';
 
-const LocationsListItem = ({ location, isLast }: LocationsListItemProps): JSX.Element => {
+export function LocationsListItem({ location, isLast }: LocationsListItemProps) {
   return (
     <>
       {location && (
@@ -22,6 +23,4 @@ const LocationsListItem = ({ location, isLast }: LocationsListItemProps): JSX.El
       )}
     </>
   );
-};
-
-export default LocationsListItem;
+}

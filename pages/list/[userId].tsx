@@ -1,19 +1,19 @@
 import type {
   GetServerSideProps,
   GetServerSidePropsContext,
-  NextPage,
   PreviewData,
   InferGetServerSidePropsType,
 } from 'next';
 import Head from 'next/head';
-import { ParsedUrlQuery } from 'querystring';
-import dbConnect from 'middleware/db-connect';
-import { onUserWishlist } from 'mongoose/locations/services';
-import LocationsList from 'components/locations-list';
 import { useSession } from 'next-auth/react';
-import { LocationInterface } from 'mongoose/locations/interface';
+import { ParsedUrlQuery } from 'querystring';
 
-const List: NextPage = (props: InferGetServerSidePropsType<typeof getServerSideProps>) => {
+import { onUserWishlist } from 'mongoose/locations/services';
+import { LocationsList } from 'components/locations-list';
+import { LocationInterface } from 'mongoose/locations/interface';
+import dbConnect from 'middleware/db-connect';
+
+export default function List(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
   const locations: LocationInterface[] = JSON.parse(props.data?.locations);
   const userId: string | undefined = props.data?.userId;
   const { data: session } = useSession();
@@ -36,7 +36,7 @@ const List: NextPage = (props: InferGetServerSidePropsType<typeof getServerSideP
       <LocationsList locations={locations} />
     </>
   );
-};
+}
 
 export const getServerSideProps: GetServerSideProps = async (
   context: GetServerSidePropsContext<ParsedUrlQuery, PreviewData>,
@@ -54,4 +54,3 @@ export const getServerSideProps: GetServerSideProps = async (
     },
   };
 };
-export default List;

@@ -1,11 +1,11 @@
-import type { GetStaticProps, InferGetStaticPropsType, NextPage } from 'next';
+import type { GetStaticProps, InferGetStaticPropsType } from 'next';
 
+import { LocationsList } from 'components/locations-list';
 import { findAllLocations } from 'mongoose/locations/services';
 import { LocationInterface } from 'mongoose/locations/interface';
 import dbConnect from 'middleware/db-connect';
-import LocationsList from 'components/locations-list';
 
-const Home: NextPage = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
+export default function Home(props: InferGetStaticPropsType<typeof getStaticProps>) {
   const locations: LocationInterface[] = JSON.parse(props.data?.locations);
 
   return (
@@ -13,7 +13,7 @@ const Home: NextPage = (props: InferGetStaticPropsType<typeof getStaticProps>) =
       <LocationsList locations={locations} />
     </>
   );
-};
+}
 
 export const getStaticProps: GetStaticProps = async () => {
   let locations: LocationInterface[] | [];
@@ -29,5 +29,3 @@ export const getStaticProps: GetStaticProps = async () => {
     },
   };
 };
-
-export default Home;

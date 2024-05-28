@@ -1,7 +1,7 @@
 import { LocationInterface } from 'mongoose/locations/interface';
-import LocationsListItem from 'components/locations-list-item';
+import { LocationsListItem } from 'components/locations-list-item';
 
-const LocationsList = ({ locations }: { locations: LocationInterface[] }): JSX.Element => {
+export function LocationsList({ locations }: { locations: LocationInterface[] }) {
   return (
     <>
       {locations.map((location, i) => {
@@ -15,5 +15,4 @@ const LocationsList = ({ locations }: { locations: LocationInterface[] }): JSX.E
       })}
     </>
   );
-};
-export default LocationsList;
+}

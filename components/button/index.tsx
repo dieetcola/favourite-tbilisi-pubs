@@ -1,6 +1,6 @@
 import React, { ReactNode, ComponentProps } from 'react';
 
-const Button = ({ children, disabled, onClick }: ComponentProps<'button'>) => {
+export function Button({ children, disabled, onClick }: ComponentProps<'button'>) {
   const renderContent = (children: ReactNode) => {
     if (disabled) {
       return <span>{children}</span>;
@@ -9,5 +9,4 @@ const Button = ({ children, disabled, onClick }: ComponentProps<'button'>) => {
     }
   };
   return <div className='cursor-pointer'>{renderContent(children)}</div>;
-};
-export default Button;
+}

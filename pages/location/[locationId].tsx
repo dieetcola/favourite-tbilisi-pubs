@@ -4,15 +4,15 @@ import type {
   GetServerSidePropsContext,
   InferGetServerSidePropsType,
   PreviewData,
-  NextPage,
 } from 'next';
 import { ParsedUrlQuery } from 'querystring';
+
 import { LocationInterface } from 'mongoose/locations/interface';
 import { findLocationsById } from 'mongoose/locations/services';
+import { LocationDetail } from 'components/locations-details';
 import dbConnect from 'middleware/db-connect';
-import LocationDetail from 'components/locations-details';
 
-const Location: NextPage = (props: InferGetServerSidePropsType<typeof getServerSideProps>) => {
+export default function Location(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
   let location: LocationInterface = JSON.parse(props.data?.location);
   let title = `The Food Finder - Details for ${location?.name}`;
 
@@ -29,7 +29,7 @@ const Location: NextPage = (props: InferGetServerSidePropsType<typeof getServerS
       <LocationDetail location={location} />
     </>
   );
-};
+}
 
 export const getServerSideProps: GetServerSideProps = async (
   context: GetServerSidePropsContext<ParsedUrlQuery, PreviewData>,
@@ -51,5 +51,3 @@ export const getServerSideProps: GetServerSideProps = async (
     props: { data: { location: JSON.stringify(locations.pop()) } },
   };
 };
-
-export default Location;

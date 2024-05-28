@@ -1,11 +1,11 @@
 import React, { useRef } from 'react';
 import { useMotionValue, motion, useSpring, useTransform } from 'framer-motion';
+import { FiArrowRight } from 'react-icons/fi';
 
 import { LinkProps } from 'types';
 import { cn } from 'lib/utils';
-import { FiArrowRight } from 'react-icons/fi';
 
-const Link = (props: LinkProps) => {
+export function Link(props: LinkProps) {
   const { name, subheading, image, href, location_id, isLast } = props;
 
   const ref = useRef<HTMLAnchorElement>(null);
@@ -88,6 +88,4 @@ const Link = (props: LinkProps) => {
       </motion.div>
     </motion.a>
   );
-};
-
-export default Link;
+}

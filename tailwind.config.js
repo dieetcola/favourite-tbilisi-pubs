@@ -10,6 +10,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      gridTemplateColumns: {
+        16: 'repeat(auto-fit, minmax(600px, auto))',
+      },
       fontFamily: {
         sans: ['var(--font-surt-bold)'],
         mono: ['var(--font-mono-light)'],

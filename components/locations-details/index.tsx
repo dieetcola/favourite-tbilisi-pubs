@@ -1,11 +1,12 @@
-import { useSession } from 'next-auth/react';
 import { useEffect, useState } from 'react';
-import Image from 'next/image';
+import { useSession } from 'next-auth/react';
 
-import Button from 'components/button';
+import { Button } from 'components/button';
 import { LocationInterface } from 'mongoose/locations/interface';
+import { LocationDetailInfo } from './location-detail-info';
+import { LocationDetailImage } from './location-detail-image';
 
-const LocationDetail = (props: { location: LocationInterface }): JSX.Element => {
+export function LocationDetail(props: { location: LocationInterface }) {
   let location = props.location;
   const { data: session } = useSession();
   const [onWishlist, setOnWishlist] = useState<Boolean>(false);
@@ -55,39 +56,17 @@ const LocationDetail = (props: { location: LocationInterface }): JSX.Element => 
 
   return (
     <div className='bg-neutral-950 min-h-screen px-4 py-12 text-zinc-50'>
-      <div
-        style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(600px, auto))',
-        }}>
-        <div style={{ position: 'relative', height: '400px' }}>
+      <div className='grid grid-cols-16'>
+        <div className='relative h-96'>
           {location && (
             <>
-              <ul className=''>
-                <li>
-                  <h2 className='text-[124px] uppercase max-w-72 leading-[6.5rem] tracking-[-.045em]'>
-                    {location.name}
-                  </h2>
-                </li>
-                <li>
-                  <b>Address: </b>
-                  {location.address}
-                </li>
-
-                <li>
-                  <b>Comment: </b>
-                  {location.comment}
-                </li>
-                <li>
-                  <b>Cuisine: </b>
-                  {location.cuisine}
-                </li>
-                <li>
-                  <b>Rating: </b>
-                  {location.rating}
-                </li>
-              </ul>
-
+              <LocationDetailInfo
+                name={location.name}
+                address={location.address}
+                comment={location.comment}
+                cuisine={location.cuisine}
+                rating={location.rating}
+              />
               {session?.user.fdlst_private_userId && (
                 <Button
                   disabled={loading ? true : false}
@@ -104,20 +83,8 @@ const LocationDetail = (props: { location: LocationInterface }): JSX.Element => 
             </>
           )}
         </div>
-        <div style={{ position: 'relative', height: '400px' }}>
-          <Image
-            alt='Mountains'
-            src={location.image}
-            fill
-            sizes='(min-width: 808px) 50vw, 100vw'
-            style={{
-              objectFit: 'cover',
-            }}
-          />
-        </div>
+        <LocationDetailImage src={location.image} />
       </div>
     </div>
   );
-};
-
-export default LocationDetail;
+}

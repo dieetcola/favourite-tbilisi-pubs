@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 
-const FuzzyOverlay = () => {
+export function FuzzyOverlay() {
   return (
     <motion.div
       initial={{ transform: 'translateX(-10%) translateY(-10%)' }}
@@ -19,6 +19,4 @@ const FuzzyOverlay = () => {
       className='pointer-events-none absolute -inset-[100%] opacity-[6%]'
     />
   );
-};
-
-export default FuzzyOverlay;
+}

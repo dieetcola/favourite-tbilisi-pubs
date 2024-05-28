@@ -1,9 +1,9 @@
 import Link from 'next/link';
 import { signIn, signOut, useSession } from 'next-auth/react';
 
-import Button from 'components/button';
+import { Button } from 'components/button';
 
-const AuthElement = (): JSX.Element => {
+export function AuthElement() {
   const { data: session, status } = useSession();
 
   const renderContent = () => {
@@ -27,5 +27,4 @@ const AuthElement = (): JSX.Element => {
       {renderContent()}
     </div>
   );
-};
-export default AuthElement;
+}
