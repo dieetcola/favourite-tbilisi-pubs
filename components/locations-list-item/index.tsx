@@ -3,22 +3,35 @@ import { useMotionValue, motion, useSpring, useTransform } from 'framer-motion';
 
 import { LocationInterface } from 'mongoose/locations/interface';
 import { FiArrowRight } from 'react-icons/fi';
+import { cn } from 'lib/utils';
 
-type LinkProps = Record<string, string>;
+interface LocationsListItemProps {
+  location: LocationInterface;
+  isLast: boolean;
+}
 
-const LocationsListItem = ({ location }: { location: LocationInterface }): JSX.Element => {
+type PickLocationInterface = Pick<LocationInterface, 'name' | 'image' | 'location_id' | 'cuisine'>;
+interface LinkProps extends PickLocationInterface {
+  subheading: string;
+  href: string;
+  isLast: boolean;
+}
+
+const LocationsListItem = ({ location, isLast }: LocationsListItemProps): JSX.Element => {
+  console.log(location);
   return (
     <>
       {location && (
         <section className='bg-neutral-950 px-4 md:px-8'>
           <div className='max-w-full'>
             <Link
-              heading={location.name}
+              name={location.name}
               subheading='Learn what we do here'
-              imgSrc={location.image}
+              image={location.image}
               href={`/location/${location.location_id}`}
-              id={location.location_id}
+              location_id={location.location_id}
               cuisine={location.cuisine}
+              isLast={isLast}
             />
           </div>
         </section>
@@ -30,7 +43,7 @@ const LocationsListItem = ({ location }: { location: LocationInterface }): JSX.E
 export default LocationsListItem;
 
 const Link = (props: LinkProps) => {
-  const { heading, imgSrc, href, id } = props;
+  const { name, subheading, image, href, location_id, isLast } = props;
 
   const ref = useRef<HTMLAnchorElement>(null);
 
@@ -67,12 +80,15 @@ const Link = (props: LinkProps) => {
       onMouseMove={handleMouseMove}
       initial='initial'
       whileHover='whileHover'
-      className={`group relative py-28 grid grid-cols-3 sm:grid-cols-3 gap-4 uppercase border-y-2 border-neutral-50 transition-colors duration-500 hover:border-neutral-50 md:py-24`}>
+      className={cn(
+        isLast ? '' : 'border-y-2',
+        'group relative py-28 grid grid-cols-3 sm:grid-cols-3 gap-4 uppercase  border-neutral-50 transition-colors duration-500 hover:border-neutral-50 md:py-24',
+      )}>
       <span className='hidden lg:block -tracking-2relative z-10 text-6xl font-bold text-white transition-colors duration-500 group-hover:text-neutral-50 md:text-8xl'>
-        #00{id}
+        #00{location_id}
       </span>
       <span className='w-svw relative z-10 -tracking-3 leading-[6rem] text-[73px] font-bold text-white transition-colors duration-500 group-hover:text-neutral-50 md:text-8xl'>
-        {heading}
+        {name}
       </span>
 
       <motion.img
@@ -87,9 +103,9 @@ const Link = (props: LinkProps) => {
           whileHover: { scale: 1, rotate: '12.5deg' },
         }}
         transition={{ type: 'spring' }}
-        src={imgSrc}
+        src={image}
         className='hidden lg:block absolute z-10 h-24 w-32 rounded-lg object-cover md:h-48 md:w-64'
-        alt={`Image representing a link for ${heading}`}
+        alt={`Image representing a link for ${subheading}`}
       />
 
       <motion.div
