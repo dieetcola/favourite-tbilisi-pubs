@@ -9,9 +9,9 @@ export default function Home(props: InferGetStaticPropsType<typeof getStaticProp
   const locations: LocationInterface[] = JSON.parse(props.data?.locations);
 
   return (
-    <>
+    <div className=' h-screen text-stone-100 bg-neutral-950'>
       <LocationsList locations={locations} />
-    </>
+    </div>
   );
 }
 

@@ -45,6 +45,7 @@ export function LocationDetail(props: { location: LocationInterface }) {
       }),
     })
       .then((result) => {
+        console.log(result);
         if (result.status === 200) {
           setOnWishlist(action === 'addWishlist' ? true : false);
         }

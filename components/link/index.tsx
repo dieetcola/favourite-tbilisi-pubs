@@ -3,7 +3,6 @@ import { useMotionValue, motion, useSpring, useTransform } from 'framer-motion';
 import { FiArrowRight } from 'react-icons/fi';
 
 import { LinkProps } from 'types';
-import { cn } from 'lib/utils';
 
 export function Link(props: LinkProps) {
   const { name, subheading, image, href, location_id, isLast } = props;
@@ -43,17 +42,9 @@ export function Link(props: LinkProps) {
       onMouseMove={handleMouseMove}
       initial='initial'
       whileHover='whileHover'
-      className={cn(
-        isLast ? '' : 'border-y-2',
-        'group relative py-28 grid grid-cols-3 sm:grid-cols-3 gap-4 uppercase  border-neutral-50 transition-colors duration-500 hover:border-neutral-50 md:py-24',
-      )}>
-      <span className='hidden lg:block -tracking-2relative z-10 text-6xl font-bold text-white transition-colors duration-500 group-hover:text-neutral-50 md:text-8xl'>
-        #00{location_id}
-      </span>
-      <span className='w-svw relative z-10 -tracking-3 leading-[6rem] text-[73px] font-bold text-white transition-colors duration-500 group-hover:text-neutral-50 md:text-8xl'>
-        {name}
-      </span>
-
+      className='motion-a group relative'>
+      <span className='hidden lg:block'>#00{location_id}</span>
+      <span className='w-svw'>{name}</span>
       <motion.img
         style={{
           top,
@@ -67,7 +58,7 @@ export function Link(props: LinkProps) {
         }}
         transition={{ type: 'spring' }}
         src={image}
-        className='hidden lg:block absolute z-10 h-24 w-32 rounded-lg object-cover md:h-48 md:w-64'
+        className='motion-img'
         alt={`Image representing a link for ${subheading}`}
       />
 
@@ -83,7 +74,7 @@ export function Link(props: LinkProps) {
           },
         }}
         transition={{ type: 'spring' }}
-        className='hidden lg:block relative z-10 justify-self-end '>
+        className='motion-div'>
         <FiArrowRight className='text-8xl text-neutral-50' />
       </motion.div>
     </motion.a>

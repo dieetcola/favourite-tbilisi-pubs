@@ -3,17 +3,35 @@
 @tailwind utilities;
 
 @layer base {
-  li {
-    @apply mb-4;
+  span {
+    @apply relative z-10 -tracking-3 text-white text-6xl font-bold transition-colors duration-500 group-hover:text-neutral-50 md:text-8xl;
+  }
+  button {
+    @apply uppercase
   }
 }
+
+@layer components {
+  .motion-a {
+    @apply grid grid-cols-3 sm:grid-cols-3 gap-4 uppercase border-y-2 border-neutral-50 transition-colors duration-500 hover:border-neutral-50;
+  }
+
+  .motion-img {
+    @apply hidden lg:block absolute z-10 h-24 w-32 rounded-lg object-cover md:h-48 md:w-64;
+  }
+
+  .motion-div {
+    @apply hidden lg:block relative z-10 justify-self-end;
+  }
+}
+
 
 @layer utilities {
   .word-spacing {
     word-spacing: 140px;
     ;
   }
-}
+} 
 
 /* .my-custom-style {
   word-spacing: -10px;

@@ -10,7 +10,7 @@ export function AuthElement() {
     if (status === 'authenticated') {
       return (
         <>
-          <span className=''>Hi ({session?.user?.name})</span>
+          <div>Hi ({session?.user?.name})</div>
           <Button>
             <Link href={`/list/${session?.user.fdlst_private_userId}`}>(Your wish list)</Link>
           </Button>

@@ -7,7 +7,7 @@ export function LocationsListItem({ location, isLast }: LocationsListItemProps) 
   return (
     <>
       {location && (
-        <section className='bg-neutral-950 px-4 md:px-8'>
+        <section className='px-4 md:px-8'>
           <div className='max-w-full'>
             <Link
               name={location.name}

@@ -12,6 +12,7 @@
     "@apollo/server": "^4.10.4",
     "@as-integrations/next": "^3.0.0",
     "autoprefixer": "^10.4.19",
+    "axios": "^1.7.2",
     "clsx": "^2.1.1",
     "framer-motion": "^11.1.7",
     "graphql": "^16.8.1",

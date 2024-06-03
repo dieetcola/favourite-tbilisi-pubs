@@ -21,7 +21,7 @@ export default function List(props: InferGetServerSidePropsType<typeof getServer
   let isCurrentUsers = userId && session?.user.fdlst_private_userId === userId;
 
   return (
-    <>
+    <div className='h-screen text-stone-100 bg-neutral-950'>
       <Head>
         <title>{title}</title>
         content={`The Food Finder. A personal wish list.`}
@@ -34,7 +34,7 @@ export default function List(props: InferGetServerSidePropsType<typeof getServer
         </>
       )}
       <LocationsList locations={locations} />
-    </>
+    </div>
   );
 }
 
